@@ -40,10 +40,10 @@ class GHeader extends GHeaderParent {
             } else {
                 $html .= '<body class="page-md">';
             }
-            
+
             $html .= '<script>var URL_API = "' . URL_API . '";</script>';
 
-            $html .= '<div class="page-header">'; 
+            $html .= '<div class="page-header">';
             $html .= '<div class="page-header-top">';
             $html .= '<div class="container">';
 
@@ -90,7 +90,7 @@ class GHeader extends GHeaderParent {
 
             $html .= '<div class="page-content">';
             $html .= '<div class="container">';
-            
+
         } else {
             if ($this->_bodyClass != "")
                 $html .= '<body class="' . $this->_bodyClass . '">';
@@ -110,6 +110,7 @@ class GHeader extends GHeaderParent {
         $arrayMenu[] = array('title' => 'Início', 'url' => 'index.php', 'icon' => 'fa fa-home');
         $arrayMenu[] = array('title' => 'Usuários', 'url' => 'usuario/usuario.php', 'icon' => 'fa fa-user');
         $arrayMenu[] = array('title' => 'Animais', 'url' => 'animal/animal.php', 'icon' => 'fa fa-github');
+        $arrayMenu[] = array('title' => 'Proprietários', 'url' => 'proprietario/proprietario.php', 'icon' => 'fa fa-user');
 
         foreach ($arrayMenu as $menu) {
             $html .= '<li class="' . $active . '">';
@@ -122,7 +123,7 @@ class GHeader extends GHeaderParent {
             $html .= '</li>';
         }
 
-        
+
         $html .= '</ul>';
         return $html;
     }
