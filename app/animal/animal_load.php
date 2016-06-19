@@ -37,7 +37,7 @@ try {
         $filter->setOrder(array('ani_var_nome' => 'ASC'));
         $filter->setLimit($start, $rp);
 
-        $query = "SELECT ani_int_codigo, ani_var_nome, ani_var_vivo, ani_dec_peso, ani_var_raca FROM vw_animal " . $filter->getWhere();
+        $query = "SELECT ani_int_codigo, ani_var_nome, ani_var_vivo, ani_dec_peso, ani_var_raca, pro_var_nome FROM vw_animal " . $filter->getWhere();
         $param = $filter->getParam();
 
         $mysql->execute($query, $param);
@@ -50,6 +50,7 @@ try {
             $html .= '<th>Vivo</th>';
             $html .= '<th>Peso</th>';
             $html .= '<th>Raça</th>';
+            $html .= '<th>Proprietário</th>';
             $html .= '<th class="__acenter hidden-phone" width="100px">Actions</th>';
             $html .= '</tr>';
             $html .= '</thead>';
@@ -61,6 +62,7 @@ try {
                 $html .= '<td>' . $mysql->res['ani_var_vivo'] . '</td>';
                 $html .= '<td>' . GF::numberFormat($mysql->res['ani_dec_peso'], false, false, false,3) . '</td>';
                 $html .= '<td>' . $mysql->res['ani_var_raca'] . '</td>';
+                $html .= '<td>' . $mysql->res['pro_var_nome'] . '</td>';
 
                 //<editor-fold desc="Actions">
                     $html .= '<td class="__acenter hidden-phone acoes">';

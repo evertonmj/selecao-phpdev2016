@@ -26,6 +26,21 @@ $html .= '</div>'; //divTable
 $html .= getWidgetFooter();
 echo $html;
 
+//***carrega os proprietarios da base
+$mysql = new GDbMysql();
+$proprietarios = array();
+$filter = new GFilter();
+$filter->setOrder(array('pro_var_nome' => 'ASC'));
+$query = "SELECT pro_int_codigo, pro_var_nome FROM vw_proprietario " . $filter->getWhere();
+$param = $filter->getParam();
+$mysql->execute($query, $param);
+
+while($mysql->fetch()) {
+  $proprietarios[$mysql->res['pro_int_codigo']] = $mysql->res['pro_var_nome'];
+}
+
+//var_dump($proprietarios);die();
+
 echo '<div id="divForm" class="row divForm">';
 include 'animal_form.php';
 echo '</div>';

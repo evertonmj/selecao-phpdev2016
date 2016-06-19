@@ -23,15 +23,16 @@ class AnimalDao {
     public function insert($animal) {
 
         $return = array();
-        $param = array("sdss",
+        $param = array("sdssi",
             $animal->getAni_var_nome(),
             $animal->getAni_dec_peso(),
             $animal->getAni_var_raca(),
-            $animal->getAni_cha_vivo()           
+            $animal->getAni_cha_vivo(),
+            $animal->getPro_int_codigo()
             );
         try{
             $mysql = new GDbMysql();
-            $mysql->execute("CALL sp_animal_ins(?,?,?,?, @p_status, @p_msg, @p_insert_id);", $param, false);
+            $mysql->execute("CALL sp_animal_ins(?,?,?,?,?, @p_status, @p_msg, @p_insert_id);", $param, false);
             $mysql->execute("SELECT @p_status, @p_msg, @p_insert_id");
             $mysql->fetch();
             $return["status"] = ($mysql->res[0]) ? true : false;
@@ -49,15 +50,17 @@ class AnimalDao {
     public function update($animal) {
 
         $return = array();
-        $param = array("isdss",
+        $param = array("isdssi",
             $animal->getAni_int_codigo(),
             $animal->getAni_var_nome(),
             $animal->getAni_dec_peso(),
             $animal->getAni_var_raca(),
-            $animal->getAni_cha_vivo());
+            $animal->getAni_cha_vivo(),
+            $animal->getPro_int_codigo()
+          );
         try{
             $mysql = new GDbMysql();
-            $mysql->execute("CALL sp_animal_upd(?,?,?,?,?, @p_status, @p_msg);", $param, false);
+            $mysql->execute("CALL sp_animal_upd(?,?,?,?,?,?, @p_status, @p_msg);", $param, false);
             $mysql->execute("SELECT @p_status, @p_msg");
             $mysql->fetch();
             $return["status"] = ($mysql->res[0]) ? true : false;

@@ -7,7 +7,7 @@ require '_class/animalDao.php';
 
 $app->get('/animais/{ani_int_codigo}', function (Request $request, Response $response) {
     $ani_int_codigo = $request->getAttribute('ani_int_codigo');
-    
+
     $animal = new Animal();
     $animal->setAni_int_codigo($ani_int_codigo);
 
@@ -26,6 +26,7 @@ $app->post('/animais', function (Request $request, Response $response) {
  	$animal->setAni_cha_vivo($body['ani_cha_vivo']);
  	$animal->setAni_dec_peso($body['ani_dec_peso']);
  	$animal->setAni_var_raca($body['ani_var_raca']);
+  $animal->setPro_int_codigo($body['pro_int_codigo']);
 
     $data = AnimalDao::insert($animal);
     $code = ($data['status']) ? 201 : 500;
@@ -37,14 +38,15 @@ $app->post('/animais', function (Request $request, Response $response) {
 $app->put('/animais/{ani_int_codigo}', function (Request $request, Response $response) {
     $body = $request->getParsedBody();
 	$ani_int_codigo = $request->getAttribute('ani_int_codigo');
-    
+
     $animal = new Animal();
 
     $animal->setAni_int_codigo($ani_int_codigo);
     $animal->setAni_var_nome($body['ani_var_nome']);
- 	$animal->setAni_cha_vivo($body['ani_cha_vivo']);
- 	$animal->setAni_dec_peso($body['ani_dec_peso']);
- 	$animal->setAni_var_raca($body['ani_var_raca']);
+   	$animal->setAni_cha_vivo($body['ani_cha_vivo']);
+   	$animal->setAni_dec_peso($body['ani_dec_peso']);
+   	$animal->setAni_var_raca($body['ani_var_raca']);
+    $animal->setPro_int_codigo($body['pro_int_codigo']);
 
     $data = AnimalDao::update($animal);
     $code = ($data['status']) ? 200 : 500;
@@ -55,7 +57,7 @@ $app->put('/animais/{ani_int_codigo}', function (Request $request, Response $res
 
 $app->delete('/animais/{ani_int_codigo}', function (Request $request, Response $response) {
 	$ani_int_codigo = $request->getAttribute('ani_int_codigo');
-    
+
     $animal = new Animal();
     $animal->setAni_int_codigo($ani_int_codigo);
 
