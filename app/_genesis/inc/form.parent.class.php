@@ -354,8 +354,9 @@ class GFormParent {
      * @param boolean $control
      * @return string
      */
-    function addDateField($id, $title, $hour = false, $fieldParam = false, $paramConfig = false, $legends = false, $titleParam = false, $readonly = false, $control = false) {
+    function addDateField($id, $title, $format = "dd/mm/yyyy", $hour = false, $fieldParam = false, $paramConfig = false, $legends = false, $titleParam = false, $readonly = false, $control = false) {
         $return = '';
+
         if($fieldParam) {
           $fieldParam["value"] = ( $hour) ? substr(GF::convertDate($fieldParam["value"], false), 0, 16) : substr(GF::convertDate($fieldParam["value"], false), 0, 10);
           if ($fieldParam["validate"] != "")
@@ -363,12 +364,14 @@ class GFormParent {
           else
               $fieldParam["validate"] = ($hour) ? "dataHora" : "data";
         }
+
         if ($readonly)
             $fieldParam["readonly"] = "readonly";
 
         $return .= $this->addInput('text', $id, $title, $fieldParam, $titleParam, $legends, $control);
         $return .= '<script> $(function(){';
         $return .= ( $hour) ? 'jQuery("#' . $id . '").datetimepicker({' : 'jQuery("#' . $id . '").datepicker({';
+        //$return .= "dateFormat: " . $format;
         if ($paramConfig) {
             foreach ($paramConfig as $key => $value) {
                 $return .= $key . ' : ' . $value . ",";
