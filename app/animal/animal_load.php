@@ -66,7 +66,7 @@ try {
 
                 //<editor-fold desc="Actions">
                     $html .= '<td class="__acenter hidden-phone acoes">';
-                    $html .= $form->addButton('l__btn_vacinas', '<i class="fa fa-share"></i>', array('class' => 'btn btn-small btn-icon-only l__btn_vacinas', 'title' => 'Aplicar Vacina'));
+                    $html .= $form->addButton('l__btn_vacinas', '<i class="fa fa-share"></i>', array('class' => 'btn btn-small btn-icon-only l__btn_vacinas', 'title' => 'Vacinas Programadas'));
                     $html .= $form->addButton('l__btn_editar', '<i class="fa fa-pencil"></i>', array('class' => 'btn btn-small btn-icon-only l__btn_editar', 'title' => 'Editar'));
                     $html .= $form->addButton('l__btn_excluir', '<i class="fa fa-trash"></i>', array('class' => 'btn btn-small btn-icon-only l__btn_excluir', 'title' => 'Remover'));
                     $html .= '</td>';

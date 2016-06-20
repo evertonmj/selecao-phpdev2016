@@ -13,6 +13,7 @@ class Theme {
             'plugins/bootstrap/css/bootstrap.min.css',
             'plugins/uniform/css/uniform.default.css',
             'plugins/icheck/skins/all.css',
+            'plugins/jquery-ui/jquery-ui.min.css',
 
             'css/components-md.css',
             // 'css/plugins-md.css',

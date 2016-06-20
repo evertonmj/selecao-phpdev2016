@@ -4,6 +4,7 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 require '_class/animalVacinaDao.php';
+require '_class/vacinaDao.php';
 
 $app->get('/animalVacinas/{anv_int_codigo}', function (Request $request, Response $response) {
     $anv_int_codigo = $request->getAttribute('anv_int_codigo');
@@ -24,17 +25,19 @@ $app->post('/animalVacinas', function (Request $request, Response $response) {
     $animal = new Animal();
     $vacina = new Vacina();
     $usuario = new Usuario();
+    $gfUtil = new GF();
 
     $animal->setAni_int_codigo($body['ani_int_codigo']);
-    $vacina->setVan_int_codigo($body['van_int_codigo']);
+    $vacina->setVac_int_codigo($body['vac_int_codigo']);
+    $usuario->setUsu_int_codigo(1);
 
-    $animalD = AnimalDao::selectByIdForm($animal);
-    $vacinaD = VacinaDao::selectByIdForm($vacina);
+    //$animalD = AnimalDao::selectByIdForm($animal);
+    //$vacinaD = VacinaDao::selectByIdForm($vacina);
 
     $animalVacina = new AnimalVacina();
-    $animalVacina->setAnimal($animalD);
-   	$animalVacina->setVacina($vacinaD);
-   	$animalVacina->setAnv_dat_programacao($body['anv_dat_programacao']);
+    $animalVacina->setAnimal($animal);
+   	$animalVacina->setVacina($vacina);
+   	$animalVacina->setAnv_dat_programacao($gfUtil::convertDate($body['anv_dat_programacao']));
    	$animalVacina->setAnv_dti_aplicacao($body['anv_dti_aplicacao']);
     $animalVacina->setUsuario($usuario);
 
@@ -49,6 +52,8 @@ $app->put('/animalVacinas', function (Request $request, Response $response) {
 
     $animal->setAnv_int_codigo($body['anv_int_codigo']);
     $vacina->setAni_int_codigo($body['ani_int_codigo']);
+    $usuario = new Usuario();
+    $usuario->setUsu_int_codigo(1);
 
     $animalVacina = new AnimalVacina();
     $animalVacina->setAnimal($animalD);

@@ -10,7 +10,8 @@ $htmlForm .= getWidgetHeader($title, $tools);
 $htmlForm .= $form->open('form', 'form-vertical form', 'post', '_self', '', true);
 $htmlForm .= $form->addInput('hidden', 'acao', false, array('value' => 'ins', 'class' => 'acao'), false, false, false);
 $htmlForm .= $form->addInput('hidden', 'anv_int_codigo', false, array('value' => ''), false, false, false);
-$htmlForm .= $form->addInput('hidden', 'ani_int_codigo', false, array('value' => $ani_int_codigo), false, false, false);
+$htmlForm .= $form->addInput('hidden', 'ani_int_codigo', false, array('value' => isset($ani_int_codigo) || $ani_int_codigo != "" ? $ani_int_codigo : $_GET["animal_id"]), false, false, false);
+$htmlForm .= $form->addDateField('anv_dat_programacao', "Data de Programação", false, array("dateFormat" => "dd/mm/yyyy"));
 $htmlForm .= $form->addSelect('vac_int_codigo', $vacinas, '', 'Vacina*', array('validate' => 'required'), false, false, true, '', 'Selecione...');
 
 
