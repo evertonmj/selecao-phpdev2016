@@ -63,6 +63,21 @@ $app->put('/animalVacinas', function (Request $request, Response $response) {
 	return $response->withJson($data, $code);
 });
 
+$app->put('/animalVacinas/aplicarVacina/{anv_int_codigo}', function (Request $request, Response $response) {
+  $anv_int_codigo = $request->getAttribute('anv_int_codigo');
+
+  $animalVacina = new AnimalVacina();
+  $animalVacina->setAnv_int_codigo($anv_int_codigo);
+
+  $dataAnv = AnimalVacinaDao::selectByIdForm($animalVacina);
+
+  $data = AnimalVacinaDao::aplicarVacina($dataAnv);
+
+  $code = ($data['status']) ? 200 : 500;
+
+  return $response->withJson($data, $code);
+});
+
 $app->delete('/animalVacinas/{anv_int_codigo}', function (Request $request, Response $response) {
 	$anv_int_codigo = $request->getAttribute('anv_int_codigo');
 

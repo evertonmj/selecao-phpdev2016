@@ -92,11 +92,24 @@ $footer->show();
                 showForm('divForm', 'upd', 'Editar');
             });
         });
+
         $(document).on('click', '.l__btn_excluir', function() {
             var anv_int_codigo = $(this).parents('tr.linhaRegistro').attr('id');
 
             $.gDisplay.showYN("Quer realmente deletar o item selecionado?", function() {
                 $.gAjax.exec('DELETE', URL_API + 'animalVacinas/' + anv_int_codigo, false, false, function(json) {
+                    if (json.status) {
+                        filtrar();
+                    }
+                });
+            });
+        });
+
+        $(document).on('click', '.l__btn_aplicar_vacina', function() {
+            var anv_int_codigo = $(this).parents('tr.linhaRegistro').attr('id');
+
+            $.gDisplay.showYN("Deseja realmente aplicar a vacina selecionada?", function() {
+                $.gAjax.exec('PUT', URL_API + 'animalVacinas/aplicarVacina/' + anv_int_codigo, false, false, function(json) {
                     if (json.status) {
                         filtrar();
                     }

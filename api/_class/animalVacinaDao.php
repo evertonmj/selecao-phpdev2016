@@ -81,4 +81,28 @@ class AnimalVacinaDao {
         }
         return $return;
     }
+
+    /** @param AnimalVacina $animalVacina */
+    public function aplicarVacina($animalVacina) {
+
+        $return = array();
+        $param = array("iii",
+                        $animalVacina['anv_int_codigo'],
+                        $animalVacina['ani_int_codigo'],
+                        $animalVacina['usu_int_codigo']);
+
+        try{
+            $mysql = new GDbMysql();
+            $mysql->execute("CALL sp_animalvacina_aplica(?,?,?,'S', @p_status, @p_msg);", $param, false);
+            $mysql->execute("SELECT @p_status, @p_msg");
+            $mysql->fetch();
+            $return["status"] = ($mysql->res[0]) ? true : false;
+            $return["msg"] = $mysql->res[1];
+            $mysql->close();
+        } catch (GDbException $e) {
+            $return["status"] = false;
+            $return["msg"] = $e->getError();
+        }
+        return $return;
+    }
 }

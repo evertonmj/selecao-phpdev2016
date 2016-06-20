@@ -50,21 +50,25 @@ try {
             $html .= '<th>Nome Vacina</th>';
             $html .= '<th>Data Programação</th>';
             $html .= '<th>Data Aplicação</th>';
+            $html .= '<th>Aplicada?</th>';
             $html .= '<th class="__acenter hidden-phone" width="100px">Actions</th>';
             $html .= '</tr>';
             $html .= '</thead>';
             $html .= '<tbody>';
             while ($mysql->fetch()) {
                 $class = ($_POST['p__selecionado'] == $mysql->res['ani_int_codigo']) ? 'success' : '';
+                $aplicacao = $mysql->res['anv_dti_aplicacao'] == null || $mysql->res['anv_dti_aplicacao'] == "00/00/0000 00:00:00" ? 'Não' : 'Sim';
                 $html .= '<tr id="' . $mysql->res['anv_int_codigo'] . '" class="linhaRegistro ' . $class . '">';
                 $html .= '<td>' . $mysql->res['ani_var_nome'] . '</td>';
                 $html .= '<td>' . $mysql->res['vac_var_nome'] . '</td>';
                 $html .= '<td>' . $mysql->res['anv_dat_programacao'] . '</td>';
                 $html .= '<td>' . $mysql->res['anv_dti_aplicacao'] . '</td>';
+                $html .= '<td>' . $aplicacao  . '</td>';
 
                 //<editor-fold desc="Actions">
                     $html .= '<td class="__acenter hidden-phone acoes">';
-                    $html .= $form->addButton('l__btn_excluir', '<i class="fa fa-trash"></i>', array('class' => 'btn btn-small btn-icon-only l__btn_excluir', 'title' => 'Remove'));
+                    $html .= $form->addButton('l__btn_aplicar_vacina', '<i class="fa fa-share"></i>', array('class' => 'btn btn-small btn-icon-only l__btn_aplicar_vacina', 'title' => 'Aplicar Vacina'));
+                    $html .= $form->addButton('l__btn_excluir', '<i class="fa fa-trash"></i>', array('class' => 'btn btn-small btn-icon-only l__btn_excluir', 'title' => 'Remover'));
                     $html .= '</td>';
                 //</editor-fold>
                 $html .= '</tr>';
