@@ -12,5 +12,6 @@ require '_genesis/genesis.php';
 require 'endpoints/usuarios.php';
 require 'endpoints/animais.php';
 require 'endpoints/proprietarios.php';
+require 'endpoints/animalVacinas.php';
 
 $app->run();

@@ -441,22 +441,12 @@ class GFormParent {
      * @param string $title
      * @param array $param
      */
-    function addUploadField($id, $title, $param) {
+    function addUploadField($id, $title, $data_url = "", $param) {
         $return = '';
         if ($title)
             $return .= $this->addLabel($id, $title);
 
-        $return .= '<div id="' . $id . '"></div>';
-        $return .= '<script>';
-        $return .= 'jQuery("#' . $id . '").gFileUploader({{';
-        if ($param) {
-            foreach ($param as $key => $value) {
-                $return .= $key . ' : ' . $value . ',';
-            }
-        }
-        $return = substr($return, 0, -1);
-        $return .= '});';
-        $return .= '</script>';
+        $return .= '<input id="' . $id . '" type="file" name="files[]" data-url="' . $data_url . '" multiple';
 
         return $return;
     }

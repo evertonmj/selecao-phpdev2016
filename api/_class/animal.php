@@ -6,6 +6,7 @@ class Animal{
 	private $ani_dec_peso;
 	private $ani_var_raca;
 	private $pro_int_codigo;
+	private $ani_var_imagem;
 
 	public function getAni_int_codigo() {
 		return $this->ani_int_codigo;
@@ -53,6 +54,14 @@ class Animal{
 
 	public function setPro_int_codigo($pro_int_codigo) {
 		$this->pro_int_codigo = $pro_int_codigo;
+	}
+
+	public function getAni_var_imagem() {
+		return $this->ani_var_imagem;
+	}
+
+	public function setAni_var_imagem($ani_var_imagem) {
+		$this->ani_var_imagem = $ani_var_imagem;
 	}
 
 }
