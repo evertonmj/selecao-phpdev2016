@@ -20,6 +20,8 @@ $html .= getBotaoAdicionar();
 $html .= $form->close();
 //</editor-fold>
 
+$ani_int_codigo = $_GET['animal_id'];
+
 $paginate = new GPaginate('animalVacina', 'animalVacina_load.php', SYS_PAGINACAO);
 $html .= $paginate->get();
 $html .= '</div>'; //divTable
@@ -38,8 +40,6 @@ $mysql->execute($query, $param);
 while($mysql->fetch()) {
   $vacinas[$mysql->res['vac_int_codigo']] = $mysql->res['vac_var_nome'];
 }
-
-$ani_int_codigo = $_GET['animal_id'];
 
 echo '<div id="divForm" class="row divForm">';
 include 'animalVacina_form.php';
@@ -81,6 +81,7 @@ $footer->show();
 
             showForm('divForm', 'ins', 'Adicionar');
         });
+
         $(document).on('click', '.l__btn_editar, tr.linhaRegistro td:not([class~="acoes"])', function() {
             var anv_int_codigo = $(this).parents('tr.linhaRegistro').attr('id');
 

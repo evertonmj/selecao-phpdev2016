@@ -34,6 +34,11 @@ class Theme {
             'plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js',
             'plugins/jquery-file-upload/js/jquery.iframe-transport.js',
             'plugins/jquery-file-upload/js/jquery.fileupload.js',
+            'plugins/jquery-file-upload/js/jquery.fileupload-process.js',
+            'plugins/jquery-file-upload/js/jquery.fileupload-image.js',
+            'plugins/jquery-file-upload/js/jquery.fileupload-audio.js',
+            'plugins/jquery-file-upload/js/jquery.fileupload-video.js',
+            'plugins/jquery-file-upload/js/jquery.fileupload-validate.js',
 
             'scripts/metronic.js',
             'scripts/layout.js',

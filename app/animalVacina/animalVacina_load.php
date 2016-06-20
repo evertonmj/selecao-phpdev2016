@@ -35,6 +35,9 @@ try {
         echo json_encode(array('count' => $count));
     } else if ($type == 'R') {
         $filter->setOrder(array('ani_var_nome' => 'ASC'));
+        //if (!empty($ani_int_codigo)) {
+            //$filter->addFilter('AND', 'ani_int_codigo', '=', 's', $ani_int_codigo);
+        //}
         $filter->setLimit($start, $rp);
 
         $query = "SELECT anv_int_codigo, ani_int_codigo, ani_var_nome, vac_int_codigo, vac_var_nome, anv_dat_programacao, anv_dti_aplicacao, anv_dti_inclusao FROM vw_animal_vacina " . $filter->getWhere();

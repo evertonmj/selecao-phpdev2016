@@ -445,12 +445,26 @@ class GFormParent {
      * @param string $title
      * @param array $param
      */
-    function addUploadField($id, $title, $data_url = "", $param) {
+    function addUploadField($id, $title) {
         $return = '';
         if ($title)
             $return .= $this->addLabel($id, $title);
 
-        $return .= '<input id="' . $id . '" type="file" name="files[]" data-url="' . $data_url . '" multiple';
+        $return .= '<span class="btn btn-success fileinput-button">';
+        $return .= '<i class="glyphicon glyphicon-plus"></i>';
+        $return .= '<span>Add files...</span>';
+        $return .= '<!-- The file input field used as target for the file upload widget -->';
+        $return .= '<input id="' . $id . '" type="file" name="files[]" />';
+        //$return .= '<input id="fileupload" type="file" name="files[]" multiple>';
+        $return .= '</span>';
+        $return .= '<br>';
+        $return .= '<br>';
+        $return .= '<!-- The global progress bar -->';
+        $return .= '<div id="progress" class="progress">';
+        $return .= '<div class="progress-bar progress-bar-success"></div>';
+        $return .= '</div>';
+        $return .= '<!-- The container for the uploaded files -->';
+        $return .= '<div id="files" class="files"></div>';
 
         return $return;
     }
